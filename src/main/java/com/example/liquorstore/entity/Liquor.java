@@ -1,5 +1,6 @@
 package com.example.liquorstore.entity;
 
+import com.example.liquorstore.enums.Category;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -26,6 +27,10 @@ public class Liquor {
     @Column(name = "image")
     private String imageUrl;
 
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
 
     public Long getId() {
         return id;
@@ -46,6 +51,14 @@ public class Liquor {
 
     public String getDescription() {
         return description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void setDescription(String description) {

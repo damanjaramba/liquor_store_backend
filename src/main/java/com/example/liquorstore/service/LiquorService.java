@@ -27,6 +27,7 @@ public class LiquorService {
     public List<Liquor> getAllLiquors() {
         return liquorRepository.findAll();
     }
+
     public Liquor getLiquorById(long id) {
         return liquorRepository.findById(id).orElse(null);
     }

@@ -1,7 +1,6 @@
 package com.example.liquorstore.dto;
 
-import jakarta.persistence.Column;
-
+import com.example.liquorstore.enums.Category;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -13,6 +12,26 @@ public class LiquorDto implements Serializable {
     private String imageUrl;
 
     private String description;
+
+    private int quantity;
+
+    private Category category;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public String getTitle() {
         return title;
