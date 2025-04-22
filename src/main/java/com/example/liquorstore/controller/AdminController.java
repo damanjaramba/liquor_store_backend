@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("public/api/v1")
-public class LiquorController {
+@RequestMapping("admin/api/v1")
+public class AdminController {
     @Autowired
     public LiquorService liquorService;
 
@@ -31,14 +31,5 @@ public class LiquorController {
     public ResponseEntity<?> deleteLiquor(@PathVariable long id) {
         liquorService.deleteLiquorById(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping("/allLiquors")
-    public ResponseEntity<?> getAllLiquors() {
-        try {
-            return new ResponseEntity<>(liquorService.getAllLiquors(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("An error occurred while fetching liquors", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
 }
