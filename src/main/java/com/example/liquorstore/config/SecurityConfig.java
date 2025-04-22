@@ -38,7 +38,8 @@ public class SecurityConfig {
 //        Set permissions on endpoints
                 .authorizeHttpRequests(auth -> auth
 //            our public endpoints
-                        .requestMatchers("public/api//v1/**").permitAll()
+                        .requestMatchers("public/api/v1/**").permitAll()
+                        .requestMatchers("admin/api/v1/**").hasRole("ADMIN")
 //            our private endpoints
                         .anyRequest().authenticated())
                 .authenticationManager(authenticationManager)

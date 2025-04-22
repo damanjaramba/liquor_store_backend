@@ -5,6 +5,7 @@ public record LoginResponse(
         String email,
         String mobileNumber,
         String token,
-        String refreshToken
+        String refreshToken,
+        String role
 ) {
 }

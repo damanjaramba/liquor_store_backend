@@ -10,15 +10,22 @@ public class Liquor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "title")
     private String title;
+
     @Column(name = "price")
     private BigDecimal price;
+
     @Column(name = "description")
     private String description;
 
+    @Column(name = "quantity")
+    private int quantity;
+
     @Column(name = "image")
     private String imageUrl;
+
 
     public Long getId() {
         return id;
@@ -26,6 +33,15 @@ public class Liquor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getDescription() {

@@ -43,7 +43,7 @@ public class UserService {
         user.setUsername(signUpDto.getUsername());
         user.setEmail(signUpDto.getEmail());
         user.setMobileNumber(phoneNumberHelper.normalizeMobileNumber(signUpDto.getMobileNumber()));
-        user.setPassword(signUpDto.getPassword());
+        user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
         user.setName(signUpDto.getName());
         user.setRole("USER");
 
@@ -67,7 +67,8 @@ public class UserService {
                     user.getEmail(),
                     user.getMobileNumber(),
                     token,
-                    refreshToken
+                    refreshToken,
+                    user.getRole()
             );
 
             return ResponseEntity.ok(loginResponse);
