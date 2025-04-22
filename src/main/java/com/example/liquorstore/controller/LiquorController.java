@@ -41,4 +41,32 @@ public class LiquorController {
             return new ResponseEntity<>("An error occurred while fetching liquors", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/liquor/{id}")
+    public ResponseEntity<?> getLiquorById(@PathVariable long id) {
+        try {
+            Liquor liquor = liquorService.getLiquorById(id);
+            if (liquor != null) {
+                return new ResponseEntity<>(liquor, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Liquor not found", HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred while fetching liquor", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/updateLiquor/{id}")
+    public ResponseEntity<?> updateLiquor(@PathVariable long id, @RequestBody LiquorDto liquorDto) {
+        try {
+            Liquor updatedLiquor = liquorService.updateLiquor(id, liquorDto);
+            if (updatedLiquor != null) {
+                return new ResponseEntity<>(updatedLiquor, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Liquor not found", HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred while updating liquor", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

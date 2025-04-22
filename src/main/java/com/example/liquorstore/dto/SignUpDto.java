@@ -7,6 +7,7 @@ public class SignUpDto implements Serializable {
     private String email;
     private String username;
     private String password;
+    private String mobileNumber;
 
     public String getName() {
         return name;
@@ -14,6 +15,14 @@ public class SignUpDto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public String getEmail() {

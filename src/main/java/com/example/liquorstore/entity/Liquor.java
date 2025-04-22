@@ -14,6 +14,9 @@ public class Liquor {
     private String title;
     @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "image")
     private String imageUrl;
 
@@ -23,6 +26,14 @@ public class Liquor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTitle() {

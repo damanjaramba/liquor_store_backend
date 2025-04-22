@@ -27,4 +27,16 @@ public class LiquorService {
     public List<Liquor> getAllLiquors() {
         return liquorRepository.findAll();
     }
+    public Liquor getLiquorById(long id) {
+        return liquorRepository.findById(id).orElse(null);
+    }
+
+    public Liquor updateLiquor(long id, LiquorDto liquorDto) {
+        return liquorRepository.findById(id).map(existingLiquor -> {
+            BeanUtils.copyProperties(liquorDto, existingLiquor, "id");
+            return liquorRepository.save(existingLiquor);
+        }).orElse(null);
+    }
+
+
 }

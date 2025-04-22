@@ -21,6 +21,8 @@ public class User {
     private String password;
     @Column(name = "role")
     private String role;
+    @Column(name = "mobileNumber")
+    private String mobileNumber;
 
     public Long getId() {
         return id;
@@ -28,6 +30,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public String getRole() {
