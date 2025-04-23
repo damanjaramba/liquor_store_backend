@@ -35,29 +35,6 @@ public class AdminController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/allLiquors")
-    public ResponseEntity<?> getAllLiquors() {
-        try {
-            return new ResponseEntity<>(liquorService.getAllLiquors(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("An error occurred while fetching liquors", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/liquor/{id}")
-    public ResponseEntity<?> getLiquorById(@PathVariable long id) {
-        try {
-            Liquor liquor = liquorService.getLiquorById(id);
-            if (liquor != null) {
-                return new ResponseEntity<>(liquor, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Liquor not found", HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>("An error occurred while fetching liquor", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @PutMapping("/updateLiquor/{id}")
     public ResponseEntity<?> updateLiquor(@PathVariable long id, @RequestBody LiquorDto liquorDto) {
         try {
@@ -71,4 +48,6 @@ public class AdminController {
             return new ResponseEntity<>("An error occurred while updating liquor", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }
