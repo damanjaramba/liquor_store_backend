@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 //            our public endpoints
                         .requestMatchers("public/api/v1/**").permitAll()
-   //                     .requestMatchers("admin/api/v1/**").hasRole("ADMIN")
+                     .requestMatchers("admin/api/v1/**").hasRole("ADMIN")
 //            our private endpoints
                         .anyRequest().authenticated())
                 .authenticationManager(authenticationManager)
