@@ -25,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(@RequestBody SignUpDto user) {
+    public ResponseEntity<?> signup(@RequestBody SignUpDto user) {
         try {
             User signedUp = userService.signUp(user);
             if (signedUp != null) {
@@ -33,7 +33,7 @@ public class AuthController {
             } else
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

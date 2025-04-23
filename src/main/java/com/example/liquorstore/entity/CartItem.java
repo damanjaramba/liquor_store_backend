@@ -30,11 +30,43 @@ public class CartItem {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    public void updateTotalPrice() {
-        this.totalPrice = liquors.stream()
-                .map(Liquor::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .multiply(BigDecimal.valueOf(quantity));
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public List<Liquor> getLiquors() {
+        return liquors;
+    }
+
+    public void setLiquors(List<Liquor> liquors) {
+        this.liquors = liquors;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
