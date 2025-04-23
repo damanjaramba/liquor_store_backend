@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("liquor/api/v1")
+@RequestMapping("public/api/v1")
 public class LiquorController {
     @Autowired
     public LiquorService liquorService;
