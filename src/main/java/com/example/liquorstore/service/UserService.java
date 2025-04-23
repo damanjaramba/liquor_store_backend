@@ -59,7 +59,7 @@ public class UserService {
             User user = userRepository.findByUsername(login.username())
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            String token = JwtHelper.generateToken(user.getUsername());
+            String token = JwtHelper.generateToken(user.getUsername(), user.getRole());
             String refreshToken = JwtHelper.generateRefreshToken(user.getUsername());
 
             LoginResponse loginResponse = new LoginResponse(
