@@ -20,10 +20,11 @@ public class JwtHelper {
     private static final int MINUTES = 60;
     private static final int REFRESH_TOKEN_DAYS = 7;
 
-    public static String generateToken(String identifier) {
+   public static String generateToken(String identifier, String role) {
         var now = Instant.now();
         return Jwts.builder()
                 .subject(identifier)
+                .claim("roles","ROLE_" +role) // Add roles claim
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(MINUTES, ChronoUnit.MINUTES)))
                 .signWith(key)
@@ -44,6 +45,10 @@ public class JwtHelper {
         return getTokenBody(token).getSubject();
     }
 
+    public static String extractRole(String token) {
+        return getTokenBody(token).get("roles", String.class); // Extract roles claim
+    }
+
     public static Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
@@ -55,8 +60,8 @@ public class JwtHelper {
                     .parser()
                     .setSigningKey(key)
                     .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
+                    .parseClaimsJws(token)
+                    .getBody();
         } catch (SignatureException e) {
             throw new BadCredentialsException("Invalid token signature");
         } catch (ExpiredJwtException e) {
