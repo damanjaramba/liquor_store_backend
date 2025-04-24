@@ -17,16 +17,16 @@ import java.util.Date;
 public class JwtHelper {
     static byte[] keyBytes = Decoders.BASE64.decode("7xvG7s/fdDmDkY5sBNNLietiaB6HkXu/uYgviYCnBdU=");
     static Key key = Keys.hmacShaKeyFor(keyBytes);
-    private static final int MINUTES = 60;
+    private static final int HOURS = 2;
     private static final int REFRESH_TOKEN_DAYS = 7;
 
    public static String generateToken(String identifier, String role) {
         var now = Instant.now();
         return Jwts.builder()
                 .subject(identifier)
-                .claim("roles","ROLE_" +role) // Add roles claim
+                .claim("roles","ROLE_" +role)
                 .issuedAt(Date.from(now))
-                .expiration(Date.from(now.plus(MINUTES, ChronoUnit.MINUTES)))
+                .expiration(Date.from(now.plus(HOURS, ChronoUnit.HOURS)))
                 .signWith(key)
                 .compact();
     }

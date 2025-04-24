@@ -16,7 +16,6 @@ public class LiquorController {
     public LiquorService liquorService;
 
 
-
     @GetMapping("/allLiquors")
     public ResponseEntity<?> getAllLiquors() {
         try {
