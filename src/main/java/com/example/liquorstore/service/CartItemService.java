@@ -43,4 +43,9 @@ public class CartItemService {
         User sessionUser = sessionUserService.getSessionUser();
         return cartItemRepository.findByUser(sessionUser);
     }
+    public void clearCart() {
+        User sessionUser = sessionUserService.getSessionUser();
+        List<CartItem> cartItems = cartItemRepository.findByUser(sessionUser);
+        cartItemRepository.deleteAll(cartItems);
+    }
 }

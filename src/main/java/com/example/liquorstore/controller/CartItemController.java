@@ -33,6 +33,16 @@ public class CartItemController {
             return new ResponseEntity<>("An error occurred while removing from cart", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/clearCart")
+    public ResponseEntity<?> clearCart() {
+        try {
+            cartItemService.clearCart();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred while clearing the cart", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @GetMapping("/getCartItems")
     public ResponseEntity<?> getCartItems() {
         try {
